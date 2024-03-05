@@ -1,0 +1,31 @@
+﻿@model DAL.models.Salle
+
+
+
+
+<h2 class="mt-5">Modifier une salle</h2>
+
+<form method="post" asp-controller="Salle" asp-action="Update" class="mt-5">
+
+    <div class="mb-3">
+        <label class="form-label">Id</label>
+        <input type="number" class="form-control" asp-for="id" readonly>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Nom</label>
+        <input type="text" class="form-control" asp-for="nom">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Capacite</label>
+        <input type="number" class="form-control" asp-for="capacite">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Largeur</label>
+        <input type="number" class="form-control" asp-for="largeur">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+    <a asp-controller="Salle" asp-action="Index" class="btn btn-primary m-md-1">Retour</a>
+
+</form>

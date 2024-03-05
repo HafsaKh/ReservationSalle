@@ -1,0 +1,39 @@
+﻿@model List<DAL.models.Salle>
+
+
+<h2 class="mt-5 mb-5">Salles</h2>
+
+@if (Model == null || Model.Count == 0)
+{
+    <p>Aucune salle trouvée.</p>
+}
+else
+{
+    <table class="table text-light">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Capacite</th>
+                <th scope="col">Largeur</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <th scope="row">@p.id</th>
+                    <td>@p.nom</td>
+                    <td>@p.capacite</td>
+                    <td>@p.largeur</td>
+                    <td>
+                        <a class="btn btn-primary" asp-controller="Salle" asp-action="UpdateView" asp-route-id="@p.id">Modifier</a>
+                        <a class="btn ml-0 btn-danger" asp-controller="Salle" asp-action="DeleteView" asp-route-id="@p.id">Supprimer</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<a class="btn btn-primary mt-3" asp-controller="Salle" asp-action="Add">Add</a>

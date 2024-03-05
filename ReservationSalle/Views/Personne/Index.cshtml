@@ -1,0 +1,39 @@
+﻿@model List<DAL.models.Personne>
+
+
+<h2 class="mt-5 mb-5">Personnes</h2>
+
+@if (Model == null || Model.Count == 0)
+{
+    <p>Aucune personne trouvée.</p>
+}
+else
+{
+    <table class="table text-light">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Username</th>
+                <th scope="col">Password</th>
+                <th scope="col">Email</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <th scope="row">@p.id</th>
+                    <td>@p.username</td>
+                    <td>@p.password</td>
+                    <td>@p.email</td>
+                    <td>
+                        <a class="btn btn-primary" asp-controller="Personne" asp-action="UpdateView" asp-route-id="@p.id">Modifier</a>
+                        <a class="btn ml-0 btn-danger"  asp-controller="Personne" asp-action="DeleteView" asp-route-id="@p.id" >Supprimer</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<a class="btn btn-primary mt-3" asp-controller="Personne" asp-action="Add">Add</a>

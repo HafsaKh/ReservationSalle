@@ -1,0 +1,15 @@
+C:\Users\admin\source\repos\ReservationSalle\BLL\bin\Debug\net8.0\BLL.deps.json
+C:\Users\admin\source\repos\ReservationSalle\BLL\bin\Debug\net8.0\BLL.dll
+C:\Users\admin\source\repos\ReservationSalle\BLL\bin\Debug\net8.0\BLL.pdb
+C:\Users\admin\source\repos\ReservationSalle\BLL\bin\Debug\net8.0\DAL.dll
+C:\Users\admin\source\repos\ReservationSalle\BLL\bin\Debug\net8.0\DAL.pdb
+C:\Users\admin\source\repos\ReservationSalle\BLL\obj\Debug\net8.0\BLL.csproj.AssemblyReference.cache
+C:\Users\admin\source\repos\ReservationSalle\BLL\obj\Debug\net8.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\admin\source\repos\ReservationSalle\BLL\obj\Debug\net8.0\BLL.AssemblyInfoInputs.cache
+C:\Users\admin\source\repos\ReservationSalle\BLL\obj\Debug\net8.0\BLL.AssemblyInfo.cs
+C:\Users\admin\source\repos\ReservationSalle\BLL\obj\Debug\net8.0\BLL.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\ReservationSalle\BLL\obj\Debug\net8.0\BLL.csproj.CopyComplete
+C:\Users\admin\source\repos\ReservationSalle\BLL\obj\Debug\net8.0\BLL.dll
+C:\Users\admin\source\repos\ReservationSalle\BLL\obj\Debug\net8.0\refint\BLL.dll
+C:\Users\admin\source\repos\ReservationSalle\BLL\obj\Debug\net8.0\BLL.pdb
+C:\Users\admin\source\repos\ReservationSalle\BLL\obj\Debug\net8.0\ref\BLL.dll

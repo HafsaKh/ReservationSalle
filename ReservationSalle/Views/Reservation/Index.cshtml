@@ -1,0 +1,43 @@
+﻿@model List<DAL.models.Reservation>
+
+
+<h2 class="mt-5 mb-5">Reservations</h2>
+
+@if (Model == null || Model.Count == 0)
+{
+    <p>Aucune reservation trouvée.</p>
+}
+else
+{
+    <table class="table text-light">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Date</th>
+                <th scope="col">Nombre d'heures</th>
+                <th scope="col">Personne</th>
+                <th scope="col">Salle</th>
+                <th scope="col">Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <th scope="row">@p.id</th>
+                    <td>@p.date</td>
+                    <td>@p.nbrHeure</td>
+                    <td>@p.personneId</td>
+                    <td>@p.salleId</td>
+                    <td>
+                        <a class="btn btn-primary" asp-controller="Reservation" asp-action="UpdateView" asp-route-id="@p.id">Modifier</a>
+                        <a class="btn ml-0 btn-danger" asp-controller="Reservation" asp-action="DeleteView" asp-route-id="@p.id">Supprimer</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+} 
+
+                    <a class="btn btn-primary mt-3"  asp-controller="Reservation" asp-action="Add">Add</a>

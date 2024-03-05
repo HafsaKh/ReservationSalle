@@ -1,0 +1,15 @@
+﻿@model DAL.models.Reservation
+
+
+
+<div class="d-flex align-items-center justify-content-center" style="min-height: 70vh;">
+    <div class="card bg-dark " style="width: 18rem; padding: 35px;">
+        <div class="card-body text-center ">
+            <h5 class="card-title text-light mb-4">Etes-vous sur de vouloir supprimer @Model.date ?</h5>
+            <form asp-controller="Reservation" asp-action="Delete" asp-route-id="@Model.id" method="post">
+                <button type="submit" class="btn btn-danger m-lg-1">Oui</button>
+                <a asp-controller="Reservation" asp-action="Index" class="btn btn-primary m-md-1">Non</a>
+            </form>
+        </div>
+    </div>
+</div>

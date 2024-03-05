@@ -1,0 +1,28 @@
+﻿@model DAL.models.Reservation
+
+
+<h2 class="mt-5">Ajouter une nouvelle reservation</h2>
+
+<form method="post" asp-controller="Reservation" asp-action="Add" class="mt-5">
+
+    <div class="mb-3">
+        <label class="form-label">Date</label>
+        <input type="date" class="form-control" asp-for="date">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Nombre Heure</label>
+        <input type="number" class="form-control" asp-for="nbrHeure">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Personne</label>
+        <input type="number" class="form-control" asp-for="personneId">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Salle</label>
+        <input type="number" class="form-control" asp-for="salleId">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+    <a asp-controller="Reservation" asp-action="Index" class="btn btn-primary m-md-1">Retour</a>
+
+</form>

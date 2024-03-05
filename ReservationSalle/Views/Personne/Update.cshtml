@@ -1,0 +1,31 @@
+﻿@model DAL.models.Personne
+
+
+
+
+<h2 class="mt-5">Modifier une personne</h2>
+
+<form method="post" asp-controller="Personne" asp-action="Update" class="mt-5">
+
+    <div class="mb-3">
+        <label class="form-label">Id</label>
+        <input type="number" class="form-control" asp-for="id"  readonly>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input type="text" class="form-control" asp-for="username">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" asp-for="password">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" asp-for="email">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+    <a asp-controller="Personne" asp-action="Index" class="btn btn-primary m-md-1">Retour</a>
+
+</form>
