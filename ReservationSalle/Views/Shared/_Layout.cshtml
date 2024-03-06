@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -18,23 +19,48 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    @if (User.Identity.IsAuthenticated && User.Identity.Name == "Admin")
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Salle" asp-action="Index">Salles</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Personne" asp-action="Index">Personnes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Reservation" asp-action="Index">Reservations</a>
+                            </li>
+                        </ul>
+                    } else if (User.Identity.IsAuthenticated)
+                            {
+                        <ul>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Client" asp-action="Salles">Salles</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Client" asp-action="MesReservations" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Mes reservations</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Salle" asp-action="Index">Salles</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Personne" asp-action="Logout">Log out</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Personne" asp-action="Index">Personnes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Reservation" asp-action="Index">Reservations</a>
-                        </li>
-                    </ul>
+                        </ul>
+                            }else{
+                        <ul> 
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Personne" asp-action="Login">Log in</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Personne" asp-action="Sign">Sign up</a>
+                            </li>
+                        </ul>
+                                 }
                 </div>
             </div>
         </nav>

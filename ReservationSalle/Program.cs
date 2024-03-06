@@ -1,5 +1,6 @@
 using BLL;
 using DAL;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 namespace ReservationSalle
@@ -24,6 +25,14 @@ namespace ReservationSalle
             builder.Services.AddScoped<ReservationService>();
             builder.Services.AddScoped<SalleService>();
 
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
+            {
+                options.LoginPath = "/Personne/Login";
+                options.AccessDeniedPath = "/Personne/Acces";
+            });
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -43,7 +52,7 @@ namespace ReservationSalle
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Personne}/{action=Login}/{id?}");
 
             app.Run();
         }

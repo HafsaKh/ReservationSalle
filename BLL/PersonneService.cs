@@ -60,7 +60,46 @@ namespace BLL
             return _db.personnes.Find(id);
         }
 
+        public Personne sign(Personne personne)
+        {
+            List<Personne> list = _db.personnes.ToList();
 
+            foreach (Personne p in list)
+            {
+                if (p.username.Equals(personne.username) || p.email.Equals(personne.email))
+                {
+                    return null;
+                }
+            }
+
+            _db.personnes.Add(personne);
+            _db.SaveChanges();
+
+            return personne;
+
+
+        }
+
+
+        public Personne login(Personne personne)
+        {
+            List<Personne> list = _db.personnes.ToList();
+            Personne result = null;
+            if (personne.username.Equals("admin") && personne.password.Equals("adminadmin"))
+            {
+                return new Personne { username = "anaRaniAdmin" };
+            }
+            foreach (Personne p in list)
+            {
+                if (p.username.Equals(personne.username) && p.password.Equals(personne.password))
+                {
+                    result = personne;
+                    break;
+                }
+
+            }
+            return result;
+        }
 
 
     }

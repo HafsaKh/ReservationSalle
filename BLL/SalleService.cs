@@ -57,5 +57,26 @@ namespace BLL
         {
             return _db.salles.Find(id);
         }
+
+
+        public List<Reservation> getReservations(int id)
+        {   
+            List<Reservation> list = _db.reservation.ToList();
+
+            List <Reservation> result = new List<Reservation>();
+
+            foreach (Reservation reservation in list)
+            {
+                if(reservation.personneId == id)
+                {
+                    result.Add(reservation);
+                }
+            }
+
+            return result;
+        }
+
+
+
     }
 }

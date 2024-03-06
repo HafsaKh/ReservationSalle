@@ -1,6 +1,9 @@
 ﻿using BLL;
 using DAL.models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace ReservationSalle.Controllers
 {
@@ -66,6 +69,111 @@ namespace ReservationSalle.Controllers
         }
 
 
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+
+        [HttpGet]
+        public IActionResult Sign()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Sign(Personne personne)
+        {
+            Personne result = _personneService.sign(personne);
+            if (result != null)
+            {
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.NameIdentifier, result.id.ToString()),
+                    new Claim(ClaimTypes.Name, result.username),
+                    new Claim(ClaimTypes.Role, "User"),
+                };
+
+                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var principal = new ClaimsPrincipal(identity);
+
+                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal).Wait();
+
+
+                return View("goodSign");
+            }
+            return View();
+        }
+
+
+
+
+
+
+
+        [HttpPost]
+        public IActionResult Login(Personne personne)
+        {
+            Personne result = _personneService.login(personne);
+            if (result != null)
+            {
+                if (result.username.Equals("anaRaniAdmin"))
+                {
+
+                    var claims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Name, result.username),
+                        new Claim(ClaimTypes.Role, "Admin")
+                    };
+
+                    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var principal = new ClaimsPrincipal(identity);
+
+                    HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal).Wait();
+
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    var claims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.NameIdentifier, result.id.ToString()),
+                        new Claim(ClaimTypes.Name, result.username),
+                        new Claim(ClaimTypes.Role, "User"),
+                    };
+
+                    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var principal = new ClaimsPrincipal(identity);
+
+                    HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal).Wait();
+
+                    return RedirectToAction("Index", "Client");
+                }
+            }
+            else
+            {
+                return View("falseLogin");
+            }
+        }
+
+
+
+
+        public IActionResult Acces()
+        {
+            return View();
+        }
+       
+
+        [HttpGet]
+        public IActionResult Logout()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme).Wait();
+
+            return RedirectToAction("Login", "Personne");
+        }
 
 
 
