@@ -138,3 +138,4 @@ C:\Users\admin\source\repos\ReservationSalle\ReservationSalle\obj\Debug\net8.0\r
 C:\Users\admin\source\repos\ReservationSalle\ReservationSalle\obj\Debug\net8.0\ReservationSalle.pdb
 C:\Users\admin\source\repos\ReservationSalle\ReservationSalle\obj\Debug\net8.0\ReservationSalle.genruntimeconfig.cache
 C:\Users\admin\source\repos\ReservationSalle\ReservationSalle\obj\Debug\net8.0\ref\ReservationSalle.dll
+C:\Users\admin\source\repos\ReservationSalle\ReservationSalle\obj\Debug\net8.0\ReservationSalle.sourcelink.json

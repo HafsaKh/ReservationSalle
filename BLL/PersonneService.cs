@@ -60,6 +60,21 @@ namespace BLL
             return _db.personnes.Find(id);
         }
 
+        public int getByUsername(String username)
+        {
+            Personne personne = new Personne();
+            List<Personne> list = _db.personnes.ToList();
+            foreach (Personne person in list)
+            {
+                if (person.username.Equals(username))
+                {
+                    personne = person;
+                    break;
+                }
+            }
+            return personne.id;
+        }
+
         public Personne sign(Personne personne)
         {
             List<Personne> list = _db.personnes.ToList();

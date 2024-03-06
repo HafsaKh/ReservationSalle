@@ -1,0 +1,23 @@
+﻿@using System.Security.Claims
+@model DAL.models.Salle
+
+
+<h2 class="mt-5">Résérver Salles N°@Model.id </h2>
+
+<form method="post" asp-controller="Client" asp-action="ReserverPost" class="mt-5">
+
+    <div class="mb-3">
+        <label class="form-label">Date</label>
+        <input type="datetime-local" class="form-control" name="date">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Nombre Heure</label>
+        <input type="number" class="form-control" name="nbrHeure">
+    </div>
+    <input type="number" class="form-control" value="@Model.id" name="salleId" hidden readonly>
+    <input type="number" class="form-control" name="personneId" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" hidden readonly>
+
+    <button type="submit" class="btn btn-primary">Résérver</button>
+    <a asp-controller="Client" asp-action="Salles" class="btn btn-primary m-md-1">Retour</a>
+
+</form>

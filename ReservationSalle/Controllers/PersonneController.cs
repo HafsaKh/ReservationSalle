@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ReservationSalle.Controllers
 {
@@ -16,18 +17,23 @@ namespace ReservationSalle.Controllers
         {
             this._personneService = personneService;
         }
+        [Authorize(Roles = "Admin")]
 
         public IActionResult Index()
         {
             return View(_personneService.getAll());
         }
         [HttpGet]
+        [Authorize(Roles = "Admin")]
+
         public IActionResult Add()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
+
         public IActionResult Add(Personne personne)
         {
             _personneService.create(personne);
@@ -38,12 +44,16 @@ namespace ReservationSalle.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
+
         public IActionResult DeleteView(int id)
         {
             return View("Delete",_personneService.getById(id));
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
+
         public IActionResult Delete(int id)
         {
             _personneService.delete(id);
@@ -53,6 +63,8 @@ namespace ReservationSalle.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
+
         public IActionResult UpdateView(int id)
         {
             return View("Update",_personneService.getById(id));
@@ -62,6 +74,8 @@ namespace ReservationSalle.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
+
         public IActionResult Update(Personne personne)
         {
             _personneService.update(personne);
@@ -102,7 +116,7 @@ namespace ReservationSalle.Controllers
                 HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal).Wait();
 
 
-                return View("goodSign");
+                return RedirectToAction("Salles", "Client");
             }
             return View();
         }
@@ -117,6 +131,7 @@ namespace ReservationSalle.Controllers
         public IActionResult Login(Personne personne)
         {
             Personne result = _personneService.login(personne);
+
             if (result != null)
             {
                 if (result.username.Equals("anaRaniAdmin"))
@@ -137,9 +152,11 @@ namespace ReservationSalle.Controllers
                 }
                 else
                 {
+                    int idPersonne = _personneService.getByUsername(personne.username);
+
                     var claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.NameIdentifier, result.id.ToString()),
+                        new Claim(ClaimTypes.NameIdentifier, idPersonne.ToString()),
                         new Claim(ClaimTypes.Name, result.username),
                         new Claim(ClaimTypes.Role, "User"),
                     };
@@ -149,19 +166,19 @@ namespace ReservationSalle.Controllers
 
                     HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal).Wait();
 
-                    return RedirectToAction("Index", "Client");
+                    return RedirectToAction("Salles", "Client");
                 }
             }
             else
             {
-                return View("falseLogin");
+                return View();
             }
         }
 
 
 
 
-        public IActionResult Acces()
+        public IActionResult Access()
         {
             return View();
         }

@@ -29,7 +29,7 @@ namespace ReservationSalle
             .AddCookie(options =>
             {
                 options.LoginPath = "/Personne/Login";
-                options.AccessDeniedPath = "/Personne/Acces";
+                options.AccessDeniedPath = "/Personne/Access";
             });
 
 

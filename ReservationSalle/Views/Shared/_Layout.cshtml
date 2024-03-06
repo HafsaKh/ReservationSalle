@@ -13,13 +13,13 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand text-light" asp-area="" asp-controller="Home" asp-action="Index">ReservationSalle</a>
+                <a class="navbar-brand text-light" href="#" >ReservationSalle</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    @if (User.Identity.IsAuthenticated && User.Identity.Name == "Admin")
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                     {
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
@@ -38,21 +38,29 @@
                                 <a class="nav-link text-light" asp-area="" asp-controller="Reservation" asp-action="Index">Reservations</a>
                             </li>
                         </ul>
-                    } else if (User.Identity.IsAuthenticated)
+                        <ul class="navbar-nav mr-0">
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Personne" asp-action="Logout">Log out</a>
+                            </li>
+                        </ul>
+                    }
+                    else if (User.Identity.IsAuthenticated && User.IsInRole("User"))
                             {
-                        <ul>
-                        <li class="nav-item">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Client" asp-action="Salles">Salles</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Client" asp-action="MesReservations" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Mes reservations</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Personne" asp-action="Logout">Log out</a>
-                        </li>
+                        </ul>
+                        <ul class="navbar-nav mr-0">
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Personne" asp-action="Logout">Log out</a>
+                            </li>
                         </ul>
                             }else{
-                        <ul> 
+                        <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Personne" asp-action="Login">Log in</a>
                             </li>

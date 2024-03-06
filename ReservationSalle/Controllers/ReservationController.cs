@@ -1,9 +1,11 @@
 ﻿using BLL;
 using DAL.models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ReservationSalle.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ReservationController : Controller
     {
         private readonly ReservationService _reservationService;

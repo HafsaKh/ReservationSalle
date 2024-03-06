@@ -1,0 +1,23 @@
+﻿@model DAL.models.Personne
+
+
+<div class="d-flex align-items-center justify-content-center" style="min-height:75vh;">
+    <div class="card bg-dark " style="width: 26rem; padding: 50px;">
+        <h2 class="text-center mb-4">Sign up</h2>
+        <form method="post" asp-controller="Personne" asp-action="Sign">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" asp-for="username" />
+            </div>
+            <div class="form-group mt-2">
+                <label>Password:</label>
+                <input type="password" class="form-control" asp-for="password">
+            </div>
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="text" class="form-control" asp-for="email" />
+            </div>
+            <button type="submit" class="btn btn-primary btn-block mt-3">Submit</button>
+        </form>
+    </div>
+</div>

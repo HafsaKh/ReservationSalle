@@ -1,0 +1,26 @@
+﻿@using System.Security.Claims
+@model List<DAL.models.Reservation>
+
+    <h2 class="mt-4 mb-4" style="text-align: center;">Vos Résérvations</h2>
+
+@foreach (var r in Model)
+{
+    <div class="d-flex align-items-center justify-content-center" style="min-height: 50vh;">
+
+        <div class="card bg-dark" style="width:30%;">
+            <div class="card-body text-center">
+                <div class="card-header bg-light">
+                    <h3 class="card-title text-dark mb-2">Résérvation N°@r.id</h3>
+                </div>
+                <div class="card-body">
+                    <p>Numéro de la salle : @r.salleId</p>
+                    <p>Date de résérvation : @r.date</p>
+                    <p>Nombre d'heures : @r.nbrHeure</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<a class="btn btn-primary" asp-controller="Client" asp-action="Salles">Retour</a>
